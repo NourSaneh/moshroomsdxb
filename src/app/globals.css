@@ -44,7 +44,7 @@ body {
 /* hero */
 .hero-bg {
   opacity: 0.4;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.12s ease;
 }
 .hero-bg-wink {
   opacity: 0;
@@ -515,6 +515,19 @@ body {
 /* ───────── phone hero ───────── */
 .hero-mobile .hero-bg {
   opacity: 0.45;
+}
+/* phones can't hover — she winks on her own every few seconds */
+.hero-mobile .auto-wink {
+  opacity: 0;
+  animation: autowink 5.5s ease-in-out 2s infinite;
+}
+@keyframes autowink {
+  0%, 84%, 100% {
+    opacity: 0;
+  }
+  87%, 95% {
+    opacity: 0.45;
+  }
 }
 .nav-link-m {
   font-family: var(--font-display);

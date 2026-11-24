@@ -67,6 +67,7 @@ function HeroMobile() {
   return (
     <section aria-label="Mosh Rooms" className="hero hero-mobile relative flex h-svh min-h-[580px] flex-col overflow-hidden bg-[#101215] md:hidden">
       <Image src="/images/hero-bg.jpg" alt="" fill preload sizes="100vw" className="hero-bg object-cover object-[62%_50%]" />
+      <Image src="/images/hero-bg-wink.jpg" alt="" fill sizes="100vw" className="hero-bg hero-bg-wink auto-wink object-cover object-[62%_50%]" />
 
       <div className="relative mx-4 mt-3 h-px bg-rule" />
       <nav aria-label="Main" className="relative flex items-start justify-between px-5 pt-2">
