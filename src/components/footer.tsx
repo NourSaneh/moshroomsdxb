@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { site } from "@/content/site";
 
 const links = [
@@ -26,9 +27,9 @@ export function Footer() {
               <ChainDrop />
               <ChainDrop />
             </div>
-            <a href="#top" aria-label="Mosh Rooms — back to top" className="footer-sign relative -mt-1 block w-56 md:w-72" style={{ aspectRatio: "3/2" }}>
+            <Link href="/" aria-label="Mosh Rooms — home" className="footer-sign relative -mt-1 block w-56 md:w-72" style={{ aspectRatio: "3/2" }}>
               <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill sizes="288px" className="object-contain p-4" />
-            </a>
+            </Link>
           </div>
           <div className="torn-tape relative -mt-3 w-64 rotate-[-2deg] md:w-80">
             <Image src="/images/torn-strip.png" alt="" fill sizes="320px" className="object-fill opacity-25 mix-blend-multiply" />

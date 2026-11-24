@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Layer, RotLayer, StageSection } from "./stage";
 import { box, sizes } from "@/lib/stage";
 import { frames } from "@/lib/frames";
@@ -34,7 +35,9 @@ function HeroDesktop() {
 
       <RotLayer src="/images/high-so.png" alt={`High SØ`} x={1141.8} y={161.62} w={261.601} h={775.081} iw={252} ih={772} deg={0.71} />
       <h1 className="absolute m-0" style={box(552, 51, 294, 196)}>
-        <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill preload sizes="(min-width:1440px) 294px, 21vw" className="object-cover" />
+        <Link href="/" className="logo-link relative block h-full w-full" aria-label="Mosh Rooms — home">
+          <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill preload sizes="(min-width:1440px) 294px, 21vw" className="object-cover" />
+        </Link>
       </h1>
 
       <nav aria-label="Main">
@@ -47,7 +50,6 @@ function HeroDesktop() {
       </nav>
 
       <RotLayer src="/images/figure-white.png" x={1216} y={51} w={216.677} h={208.212} iw={152} ih={169} deg={65.62} className="anim-bob" />
-      <RotLayer src="/images/curved-chain.png" x={853} y={751} w={196.738} h={207.727} iw={166.581} ih={147.894} deg={69.57} />
       <Layer src="/images/black-red-scribble.png" x={1142} y={892} w={140} h={103} />
       {/* frame with the looping event video in its window */}
       <div className="hero-frame anim-sway absolute" style={box(123, 168, 1128, 635)}>
@@ -56,7 +58,10 @@ function HeroDesktop() {
         </HeroVideo>
       </div>
 
-      <p className="sr-only">Dubai&apos;s first alternative hip-hop, emo rap and cloud rap event.</p>
+      {/* tagline under the video frame */}
+      <p className="hero-tagline absolute text-center" style={box(123, 818, 1128, 60)}>
+        Dubai&apos;s first alternative hip-hop, emo rap &amp; cloud rap night.
+      </p>
     </StageSection>
   );
 }
@@ -79,7 +84,9 @@ function HeroMobile() {
         </a>
       </nav>
       <h1 className="relative mx-auto -mt-9 aspect-[3/2] w-[46vw] max-w-[240px]">
-        <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill preload sizes="46vw" className="object-contain" />
+        <Link href="/" className="logo-link relative block h-full w-full" aria-label="Mosh Rooms — home">
+          <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill preload sizes="46vw" className="object-contain" />
+        </Link>
       </h1>
 
       <div className="relative min-h-0 flex-1">
