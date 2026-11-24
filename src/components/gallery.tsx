@@ -62,19 +62,30 @@ export function GalleryProvider({ photos, children }: { photos: Photo[]; childre
           if (e.target === e.currentTarget) dialog.current?.close();
         }}
       >
-        <figure className="lightbox-figure">
-          <Image key={photo.src} src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(max-width: 900px) 90vw, 860px" className="lightbox-img" />
-          <figcaption className="sr-only">{photo.alt}</figcaption>
-        </figure>
-        <button type="button" className="lb-btn lb-close" onClick={() => dialog.current?.close()} aria-label="Close" autoFocus>
-          <Icon d="M6 6l12 12M18 6L6 18" />
-        </button>
-        <button type="button" className="lb-btn lb-prev" onClick={() => step(-1)} aria-label="Previous photo">
-          <Icon d="M15 5l-7 7 7 7" />
-        </button>
-        <button type="button" className="lb-btn lb-next" onClick={() => step(1)} aria-label="Next photo">
-          <Icon d="M9 5l7 7-7 7" />
-        </button>
+        {/* prev · photo · next sit together, so the arrows hug the photo on wide screens */}
+        <div
+          className="lb-stage"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) dialog.current?.close();
+          }}
+        >
+          <button type="button" className="lb-btn lb-prev" onClick={() => step(-1)} aria-label="Previous photo">
+            <Icon d="M15 5l-7 7 7 7" />
+          </button>
+          <div className="lb-photo">
+            <figure className="lightbox-figure">
+              <Image key={photo.src} src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(max-width: 900px) 90vw, 860px" loading="eager" className="lightbox-img" />
+              <figcaption className="sr-only">{photo.alt}</figcaption>
+            </figure>
+            {/* close sits on the photo's top-right corner (screen corner on phones) */}
+            <button type="button" className="lb-btn lb-close" onClick={() => dialog.current?.close()} aria-label="Close" autoFocus>
+              <Icon d="M6 6l12 12M18 6L6 18" />
+            </button>
+          </div>
+          <button type="button" className="lb-btn lb-next" onClick={() => step(1)} aria-label="Next photo">
+            <Icon d="M9 5l7 7-7 7" />
+          </button>
+        </div>
         <p className="lb-count" aria-live="polite">
           {index + 1} / {photos.length}
           <span className="lb-hint"> · swipe</span>

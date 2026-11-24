@@ -189,10 +189,10 @@ body {
 }
 .lightbox-img {
   display: block;
+  /* fixed height + intrinsic ratio = a sized box even before the photo has loaded */
+  height: calc(86svh - 24px);
   width: auto;
-  height: auto;
-  max-width: min(86vw, 860px);
-  max-height: calc(86svh - 24px);
+  max-width: min(calc(100vw - 200px), 860px);
   object-fit: contain;
 }
 .lb-btn {
@@ -220,19 +220,29 @@ body {
   border-color: var(--color-blood);
   outline: none;
 }
+.lb-photo {
+  position: relative;
+  flex: none;
+}
 .lb-close {
-  top: 14px;
-  right: 14px;
+  top: -22px;
+  right: -22px;
+  width: 46px;
+  height: 46px;
+  background: rgb(10 10 10 / 0.85);
 }
-.lb-prev {
-  left: 12px;
-  top: 50%;
-  translate: 0 -50%;
+.lb-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2.5vw, 32px);
+  width: 100%;
+  height: 100%;
 }
+.lb-prev,
 .lb-next {
-  right: 12px;
-  top: 50%;
-  translate: 0 -50%;
+  position: relative;
+  flex: none;
 }
 .lb-hint {
   display: none;
@@ -248,8 +258,16 @@ body {
     width: 32px;
     height: 32px;
   }
+  .lb-close {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    width: 52px;
+    height: 52px;
+  }
   .lb-prev,
   .lb-next {
+    position: absolute;
     top: auto;
     bottom: 22px;
     translate: none;
@@ -267,6 +285,8 @@ body {
     display: inline;
   }
   .lightbox-img {
+    width: 88vw;
+    height: auto;
     max-width: 88vw;
     max-height: calc(100svh - 190px);
   }
