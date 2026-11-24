@@ -13,7 +13,7 @@ export function FramedPhoto({ geo, photo, index, photoSizes, frameSizes }: { geo
   const [cx, cy, rw, rh] = geo.rect;
   const mask = `url(${geo.mask})`;
   return (
-    <div className="absolute inset-0">
+    <div className="pointer-events-none absolute inset-0">
       <div
         className="absolute"
         style={{ left: `${bx}%`, top: `${by}%`, width: `${bw}%`, height: `${bh}%`, maskImage: mask, WebkitMaskImage: mask, maskSize: "100% 100%", WebkitMaskSize: "100% 100%", maskRepeat: "no-repeat" }}
@@ -23,7 +23,7 @@ export function FramedPhoto({ geo, photo, index, photoSizes, frameSizes }: { geo
         </div>
       </div>
       <Image src={geo.image} alt="" fill sizes={frameSizes} className="pointer-events-none select-none object-cover" draggable={false} />
-      <PhotoButton index={index} label={`Open photo: ${photo.alt}`} className="absolute" style={{ left: `${bx}%`, top: `${by}%`, width: `${bw}%`, height: `${bh}%`, rotate: `${geo.angle}deg` }} />
+      <PhotoButton index={index} label={`Open photo: ${photo.alt}`} className="pointer-events-auto absolute" style={{ left: `${bx}%`, top: `${by}%`, width: `${bw}%`, height: `${bh}%`, rotate: `${geo.angle}deg` }} />
     </div>
   );
 }

@@ -43,7 +43,7 @@ type LayerProps = {
 /** An image placed at Figma coordinates. */
 export function Layer({ src, x, y, w, h, alt = "", className = "", style, preload }: LayerProps) {
   return (
-    <div className={`absolute ${className}`} style={{ ...box(x, y, w, h), ...style }}>
+    <div className={`pointer-events-none absolute ${className}`} style={{ ...box(x, y, w, h), ...style }}>
       <Image src={src} alt={alt} fill sizes={sizes(w)} preload={preload} className="pointer-events-none select-none object-cover" draggable={false} />
     </div>
   );
@@ -64,7 +64,7 @@ export function RotLayer({
   preload,
 }: LayerProps & { iw: number; ih: number; deg: number }) {
   return (
-    <div className={`absolute flex items-center justify-center ${className}`} style={box(x, y, w, h)}>
+    <div className={`pointer-events-none absolute flex items-center justify-center ${className}`} style={box(x, y, w, h)}>
       <div className="relative flex-none" style={inner(w, h, iw, ih, deg)}>
         <Image src={src} alt={alt} fill sizes={sizes(iw)} preload={preload} className="pointer-events-none select-none object-cover" draggable={false} />
       </div>
