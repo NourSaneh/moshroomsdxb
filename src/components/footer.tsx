@@ -67,6 +67,7 @@ export function Footer() {
           <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="cta mt-5 text-[1.6rem]">
             Follow the pit <span aria-hidden>→</span>
           </a>
+          <p className="mt-3 text-sm text-bone/70">{site.instagramHandle}</p>
         </div>
       </div>
 

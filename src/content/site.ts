@@ -15,11 +15,9 @@ export const site = {
     name: "High SØ",
     area: "Al Barsha, Dubai",
   },
-  /**
-   * Instagram link used by the EVENTS button, the events section and the footer.
-   * Swap this for the profile URL (e.g. https://www.instagram.com/<handle>/) once confirmed.
-   */
-  instagram: "https://www.instagram.com/p/Df7prvENEcI/",
+  /** Instagram profile — used by the EVENTS section CTA, the footer and SEO (sameAs). */
+  instagram: "https://www.instagram.com/moshroomsdxb/",
+  instagramHandle: "@moshroomsdxb",
   genres: ["Alternative hip-hop", "Emo rap", "Cloud rap"],
 } as const;
 

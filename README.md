@@ -21,7 +21,7 @@ Everything editable is in **`src/content/site.ts`**:
 | --- | --- |
 | Name, tagline, description (SEO) | `site.name`, `site.tagline`, `site.description` |
 | Venue | `site.venue` |
-| Instagram link (EVENTS button, Events section, footer) | `site.instagram` — currently a post link; swap for the profile URL |
+| Instagram profile (Events section, footer, SEO) | `site.instagram`, `site.instagramHandle` |
 | Photos + alt text | `photos` array — drop files in `public/images/photos/` |
 | Which photo sits in each hanging frame | `album.leftFrame`, `album.middleFrame`, `album.chainsawFrame` |
 | Photos in the chainsaw-chain carousel | `album.strip` (currently a **test set**: every photo twice) |

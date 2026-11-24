@@ -33,6 +33,12 @@ export function Events() {
             Get the next date
             <span aria-hidden> →</span>
           </a>
+          <p className="mt-4 text-bone/70">
+            Follow{" "}
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="text-bone underline decoration-blood underline-offset-4 hover:text-blood">
+              {site.instagramHandle}
+            </a>
+          </p>
         </div>
         <div className="relative mx-auto w-full max-w-md">
           <GhostDance className="w-full scale-125 md:scale-150" />
