@@ -11,6 +11,18 @@ import { PhotoButton } from "./gallery";
  */
 const G = { w: 2172, h: 724, capL: 250, capR: 1922, top: { y: 95, h: 140, tile: 143 }, bot: { y: 465, h: 135, tile: 145 } };
 const pct = (n: number, of: number) => `${(n / of) * 100}%`;
+/** Centres of the two curved chain ends (inside the loop), so the arrows sit dead-centre in them. */
+const CAP_CENTER_L = 128;
+const CAP_CENTER_R = 2044;
+const LOOP_CENTER_Y = 346; // vertical middle of the chain loop (rows 119–574)
+
+function Chevron({ dir }: { dir: 1 | -1 }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden fill="none" stroke="currentColor" strokeWidth={3.2} strokeLinecap="round" strokeLinejoin="round">
+      <path d={dir === 1 ? "M9 5l7 7-7 7" : "M15 5l-7 7 7 7"} />
+    </svg>
+  );
+}
 
 const SPEED = 38; // autoplay, px per second (in stage px)
 
@@ -248,11 +260,11 @@ export function ChainCarousel({ items, className = "", style }: { items: Item[];
         style={{ left: pct(G.capL, G.w), width: pct(G.capR - G.capL, G.w), top: pct(G.bot.y, G.h), height: pct(G.bot.h, G.h), backgroundImage: "url(/images/chain-bottom-tile.png)" }}
       />
 
-      <button type="button" className="chain-arrow left-[1.5%]" aria-label="Previous photos" onClick={() => api.current.step(-1)}>
-        ‹
+      <button type="button" className="chain-arrow" style={{ left: pct(CAP_CENTER_L, G.w), top: pct(LOOP_CENTER_Y, G.h) }} aria-label="Previous photos" onClick={() => api.current.step(-1)}>
+        <Chevron dir={-1} />
       </button>
-      <button type="button" className="chain-arrow right-[1.5%]" aria-label="Next photos" onClick={() => api.current.step(1)}>
-        ›
+      <button type="button" className="chain-arrow" style={{ left: pct(CAP_CENTER_R, G.w), top: pct(LOOP_CENTER_Y, G.h) }} aria-label="Next photos" onClick={() => api.current.step(1)}>
+        <Chevron dir={1} />
       </button>
     </div>
   );

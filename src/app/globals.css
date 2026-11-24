@@ -351,20 +351,23 @@ body {
 }
 .chain-arrow {
   position: absolute;
-  top: 30%;
-  height: 40%;
-  width: 6%;
+  translate: -50% -50%;
+  width: max(40px, 4.4cqw);
+  height: max(40px, 4.4cqw);
   display: grid;
   place-items: center;
-  font-family: var(--font-display);
-  font-size: max(30px, 7cqw);
-  line-height: 1;
+  padding: 0;
   color: var(--color-bone);
   background: none;
   border: 0;
+  border-radius: 50%;
   cursor: pointer;
-  text-shadow: 0 0 10px #000;
+  filter: drop-shadow(0 0 6px #000);
   transition: color 0.2s, transform 0.2s;
+}
+.chain-arrow svg {
+  width: 70%;
+  height: 70%;
 }
 .chain-arrow:hover,
 .chain-arrow:focus-visible {
@@ -400,3 +403,62 @@ body {
   transform: rotate(72deg) scale(1.2);
 }
 
+
+/* ───────── hero video ───────── */
+.hero-video {
+  background: #050505;
+}
+.hero-video-controls {
+  z-index: 2;
+}
+.video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5cqw;
+  height: max(36px, 3cqw);
+  min-width: max(36px, 3cqw);
+  padding: 0 0.8cqw;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: max(18px, 1.6cqw);
+  line-height: 1;
+  color: var(--color-bone);
+  background: rgb(10 10 10 / 0.72);
+  border: 2px solid rgb(243 235 216 / 0.75);
+  box-shadow: 0 0 0 2px #000, 0 4px 14px rgb(0 0 0 / 0.6);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  rotate: -1.5deg;
+}
+.video-btn svg {
+  width: max(18px, 1.5cqw);
+  height: max(18px, 1.5cqw);
+  flex: none;
+}
+.video-btn:hover,
+.video-btn:focus-visible {
+  color: var(--color-blood);
+  border-color: var(--color-blood);
+  box-shadow: 0 0 0 2px #000, 0 0 18px rgb(255 42 26 / 0.6);
+  transform: scale(1.06);
+  outline: none;
+}
+.video-btn[aria-pressed="true"].video-btn-sound {
+  color: #fff;
+  border-color: var(--color-blood);
+  background: rgb(150 10 5 / 0.85);
+}
+@media (max-width: 600px) {
+  .video-btn span {
+    display: none;
+  }
+  .video-btn {
+    height: 36px;
+    min-width: 36px;
+    font-size: 15px;
+  }
+  .video-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+}

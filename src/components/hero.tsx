@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Layer, RotLayer, StageSection } from "./stage";
-import { box } from "@/lib/stage";
+import { box, sizes } from "@/lib/stage";
+import { HeroVideo } from "./hero-video";
 
 /** Wireframe 1 — hero poster. */
 export function Hero() {
@@ -38,7 +39,12 @@ export function Hero() {
       <RotLayer src="/images/figure-white.png" x={1216} y={51} w={216.677} h={208.212} iw={152} ih={169} deg={65.62} className="anim-bob" />
       <RotLayer src="/images/curved-chain.png" x={853} y={751} w={196.738} h={207.727} iw={166.581} ih={147.894} deg={69.57} />
       <Layer src="/images/black-red-scribble.png" x={1142} y={892} w={140} h={103} />
-      <Layer src="/images/hero-frame.png" x={123} y={168} w={1128} h={635} preload className="hero-frame anim-sway" />
+      {/* frame with the looping event video in its window */}
+      <div className="hero-frame anim-sway absolute" style={box(123, 168, 1128, 635)}>
+        <HeroVideo>
+          <Image src="/images/hero-frame.png" alt="" fill preload sizes={sizes(1128)} className="pointer-events-none select-none object-cover" draggable={false} />
+        </HeroVideo>
+      </div>
 
       <p className="sr-only">Dubai&apos;s first alternative hip-hop, emo rap and cloud rap event.</p>
     </StageSection>
