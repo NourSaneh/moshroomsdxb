@@ -16,7 +16,10 @@ import { SiteText } from "./payload/globals/SiteText";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+// Vercel Blob token — normally BLOB_READ_WRITE_TOKEN, but accept a custom prefix (e.g. MOSHROOMS_READ_WRITE_TOKEN) too
+const blobToken =
+  process.env.BLOB_READ_WRITE_TOKEN ||
+  Object.entries(process.env).find(([key, value]) => key.endsWith("_READ_WRITE_TOKEN") && value?.startsWith("vercel_blob_rw_"))?.[1];
 
 export default buildConfig({
   admin: {
