@@ -26,7 +26,7 @@ Everything editable is in **`src/content/site.ts`**:
 | Which photo sits in each hanging frame | `album.leftFrame`, `album.middleFrame`, `album.chainsawFrame` |
 | Photos in the chainsaw-chain carousel | `album.strip` (currently a **test set**: every photo twice) |
 
-Use photos at least **800px tall** for the big frames — the Instagram thumbnails currently used for the middle and chainsaw frames are only 240×313 and look soft on retina screens.
+Use photos at least **800px tall** for the big frames. The chainsaw frame's photo (`856770593.jpg`) is still a 240×313 Instagram thumbnail — replace it with the full-size original.
 
 ## How it works
 

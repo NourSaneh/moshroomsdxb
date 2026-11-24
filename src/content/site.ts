@@ -32,15 +32,15 @@ export type Photo = {
 
 /** Every photo in the album, in lightbox order. */
 export const photos: Photo[] = [
-  { src: "/images/photos/866433472.jpg", alt: "Mosh Rooms artists and crowd collage", width: 960, height: 1200 },
-  { src: "/images/photos/867744357.jpg", alt: "The crowd going off at Mosh Rooms", width: 720, height: 900 },
+  { src: "/images/photos/866433472.jpg", alt: "Mosh Rooms artists and crowd collage", width: 1200, height: 1500 },
+  { src: "/images/photos/867744357.jpg", alt: "The crowd going off at Mosh Rooms", width: 1200, height: 1500 },
   { src: "/images/photos/870767760.jpg", alt: "Performers on stage at Mosh Rooms", width: 640, height: 800 },
   { src: "/images/photos/865437070.jpg", alt: "Crowd and guests at Mosh Rooms", width: 960, height: 1200 },
   { src: "/images/photos/868415240.jpg", alt: "DJ set under the Mosh Rooms logo", width: 960, height: 1200 },
   { src: "/images/photos/856770593.jpg", alt: "Guest throwing horns in the crowd", width: 240, height: 313 },
-  { src: "/images/photos/858981310.jpg", alt: "Heart hands in front of the Mosh Rooms projection", width: 240, height: 313 },
-  { src: "/images/photos/861628282.jpg", alt: "Inside the pit at Mosh Rooms", width: 240, height: 313 },
-  { src: "/images/photos/859316123.jpg", alt: "Guest in costume at Mosh Rooms", width: 240, height: 313 },
+  { src: "/images/photos/858981310.jpg", alt: "Heart hands in front of the Mosh Rooms projection", width: 1080, height: 1409 },
+  { src: "/images/photos/861628282.jpg", alt: "Inside the pit at Mosh Rooms", width: 1080, height: 1409 },
+  { src: "/images/photos/859316123.jpg", alt: "Guest in costume at Mosh Rooms", width: 1080, height: 1409 },
 ];
 
 /** Which photo (index into `photos`) goes in each hanging frame, and the thumbnail strip. */
