@@ -37,7 +37,7 @@ export const photos: Photo[] = [
   { src: "/images/photos/870767760.jpg", alt: "Performers on stage at Mosh Rooms", width: 640, height: 800 },
   { src: "/images/photos/865437070.jpg", alt: "Crowd and guests at Mosh Rooms", width: 960, height: 1200 },
   { src: "/images/photos/868415240.jpg", alt: "DJ set under the Mosh Rooms logo", width: 960, height: 1200 },
-  { src: "/images/photos/856770593.jpg", alt: "Guest throwing horns in the crowd", width: 240, height: 313 },
+  { src: "/images/photos/856770593.jpg", alt: "Guest throwing horns in the crowd", width: 1080, height: 1409 },
   { src: "/images/photos/858981310.jpg", alt: "Heart hands in front of the Mosh Rooms projection", width: 1080, height: 1409 },
   { src: "/images/photos/861628282.jpg", alt: "Inside the pit at Mosh Rooms", width: 1080, height: 1409 },
   { src: "/images/photos/859316123.jpg", alt: "Guest in costume at Mosh Rooms", width: 1080, height: 1409 },

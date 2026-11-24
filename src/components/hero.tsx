@@ -1,15 +1,25 @@
 import Image from "next/image";
 import { Layer, RotLayer, StageSection } from "./stage";
 import { box, sizes } from "@/lib/stage";
-import { HeroVideo } from "./hero-video";
+import { frames } from "@/lib/frames";
+import { FramedHeroVideo, HeroVideo } from "./hero-video";
 
-/** Wireframe 1 — hero poster. */
+/** Wireframe 1 — hero poster. Tablet/desktop: the Figma stage. Phones: a full-screen portrait poster. */
 export function Hero() {
   return (
+    <div id="top">
+      <HeroDesktop />
+      <HeroMobile />
+    </div>
+  );
+}
+
+function HeroDesktop() {
+  return (
     <StageSection
-      id="top"
+      id="hero-stage"
       label="Mosh Rooms"
-      className="hero bg-[#101215]"
+      className="hero hidden bg-[#101215] md:block"
       background={
         <>
           <Image src="/images/hero-bg.jpg" alt="" fill preload sizes="100vw" className="hero-bg object-cover" />
@@ -48,5 +58,49 @@ export function Hero() {
 
       <p className="sr-only">Dubai&apos;s first alternative hip-hop, emo rap and cloud rap event.</p>
     </StageSection>
+  );
+}
+
+/** Phone hero: fills the screen. Logo + nav up top, the vertical video in a hanging frame, HIGH SØ down the side. */
+function HeroMobile() {
+  const geo = frames.left;
+  return (
+    <section aria-label="Mosh Rooms" className="hero hero-mobile relative flex h-svh min-h-[580px] flex-col overflow-hidden bg-[#101215] md:hidden">
+      <Image src="/images/hero-bg.jpg" alt="" fill preload sizes="100vw" className="hero-bg object-cover object-[62%_50%]" />
+
+      <div className="relative mx-4 mt-3 h-px bg-rule" />
+      <nav aria-label="Main" className="relative flex items-start justify-between px-5 pt-2">
+        <a href="#events" className="nav-link-m">
+          EVENTS
+        </a>
+        <a href="#album" className="nav-link-m">
+          ALBUM
+        </a>
+      </nav>
+      <h1 className="relative mx-auto -mt-9 aspect-[3/2] w-[46vw] max-w-[240px]">
+        <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill preload sizes="46vw" className="object-contain" />
+      </h1>
+
+      <div className="relative min-h-0 flex-1">
+        {/* hanging frame with the vertical event video */}
+        <div className="hero-m-frame anim-swing absolute left-[2%]" style={{ transformOrigin: `${geo.pivot[0]}% 0` }}>
+          <FramedHeroVideo geo={geo}>
+            <Image src="/images/frame-left-solo.png" alt="" fill sizes="80vw" className="pointer-events-none select-none object-cover" draggable={false} />
+          </FramedHeroVideo>
+        </div>
+
+        <div className="absolute right-[1%] top-[13%] h-[70%]" style={{ aspectRatio: "252/772" }}>
+          <Image src="/images/high-so.png" alt="High SØ" fill sizes="25vw" className="object-contain" />
+        </div>
+        <div className="anim-bob absolute right-[3%] top-[1%] w-[15vw]" style={{ aspectRatio: "152/169", rotate: "65deg" }}>
+          <Image src="/images/figure-white.png" alt="" fill sizes="17vw" className="object-contain" />
+        </div>
+        <div className="absolute bottom-[1%] right-[5%] w-[26vw]" style={{ aspectRatio: "140/103" }}>
+          <Image src="/images/black-red-scribble.png" alt="" fill sizes="26vw" className="object-contain" />
+        </div>
+      </div>
+
+      <p className="relative px-6 pb-5 pt-2 text-center text-[13px] leading-snug text-bone/85">Dubai&apos;s first alternative hip-hop, emo rap &amp; cloud rap night</p>
+    </section>
   );
 }

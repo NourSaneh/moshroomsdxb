@@ -26,7 +26,7 @@ Everything editable is in **`src/content/site.ts`**:
 | Which photo sits in each hanging frame | `album.leftFrame`, `album.middleFrame`, `album.chainsawFrame` |
 | Photos in the chainsaw-chain carousel | `album.strip` (currently a **test set**: every photo twice) |
 
-Use photos at least **800px tall** for the big frames. The chainsaw frame's photo (`856770593.jpg`) is still a 240×313 Instagram thumbnail — replace it with the full-size original.
+Use photos at least **800px tall** for the big frames.
 
 ## How it works
 
@@ -35,7 +35,7 @@ Use photos at least **800px tall** for the big frames. The chainsaw frame's phot
 - **Chainsaw-chain carousel** (`src/components/chain-carousel.tsx`). Infinite photo loop inside the chain. The straight runs of the chain are seamless tiles that move as it scrolls — top run with the photos, bottom run the other way. It auto-runs; scroll wheel, trackpad, swipe, drag, the arrow buttons and keyboard arrows all move it. Pauses on hover/focus; stops for reduced-motion users.
 - **Hero video** (`src/components/hero-video.tsx`, `public/video/hero.mp4`). Loops inside the hero frame, behind the frame border. Starts muted (browsers block autoplay with sound); the *Sound on/off* button toggles audio and there's a pause button. Pauses when scrolled off screen; no autoplay for reduced-motion users. The vertical phone clip was re-rendered to the frame's wide shape — full clip in the centre over a blurred copy of itself. To swap it, replace `hero.mp4` + `hero-poster.jpg` (ideally re-render the same way).
 - **Lightbox.** Every photo opens in a full-screen viewer (native `<dialog>`, arrow keys, Esc).
-- **Phones** (< 768px) get a stacked album layout instead of the scaled collage.
+- **Phones** (< 768px) get their own layouts instead of the scaled-down collage: a full-screen portrait hero (logo + nav, the *vertical* video `hero-vertical.mp4` in a hanging frame, HIGH SØ down the side) and a stacked album. The lightbox supports swipe left/right (and swipe down to close) with large thumb-height arrows.
 
 ## SEO / production
 
