@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { site } from "@/content/site";
+import { GhostDance } from "./ghost-dance";
 
 /** Info + call to action. The EVENTS nav link lands here. */
 export function Events() {
@@ -33,9 +34,9 @@ export function Events() {
             <span aria-hidden> →</span>
           </a>
         </div>
-        <div className="relative mx-auto w-full max-w-sm" style={{ aspectRatio: "271/307" }}>
-          <Image src="/images/ghost-large.png" alt="" fill sizes="(min-width: 768px) 384px, 80vw" className="anim-float object-contain" />
-          <div className="absolute -right-2 -top-6 w-1/3" style={{ aspectRatio: "145/140" }}>
+        <div className="relative mx-auto w-full max-w-md">
+          <GhostDance className="w-full scale-125 md:scale-150" />
+          <div className="absolute -top-4 right-0 w-1/4" style={{ aspectRatio: "145/140" }}>
             <Image src="/images/red-star-small.png" alt="" fill sizes="128px" className="anim-spin object-contain" />
           </div>
         </div>
