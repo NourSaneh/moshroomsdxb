@@ -1,6 +1,6 @@
 /**
- * All editable site content lives here.
- * Change text, links or photos in this file — no need to touch the components.
+ * DEFAULT content. The live content is edited in the dashboard (/admin) and read in src/lib/content.ts;
+ * anything left empty there falls back to what's in this file.
  */
 
 export const site = {

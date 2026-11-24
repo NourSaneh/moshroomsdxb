@@ -4,18 +4,21 @@ import { Layer, RotLayer, StageSection } from "./stage";
 import { box, sizes } from "@/lib/stage";
 import { frames } from "@/lib/frames";
 import { FramedHeroVideo, HeroVideo } from "./hero-video";
+import type { HeroVideoContent } from "@/lib/content";
+
+type HeroProps = { tagline: string; video: HeroVideoContent };
 
 /** Wireframe 1 — hero poster. Tablet/desktop: the Figma stage. Phones: a full-screen portrait poster. */
-export function Hero() {
+export function Hero(props: HeroProps) {
   return (
     <div id="top">
-      <HeroDesktop />
-      <HeroMobile />
+      <HeroDesktop {...props} />
+      <HeroMobile {...props} />
     </div>
   );
 }
 
-function HeroDesktop() {
+function HeroDesktop({ tagline, video }: HeroProps) {
   return (
     <StageSection
       id="hero-stage"
@@ -53,21 +56,21 @@ function HeroDesktop() {
       <Layer src="/images/black-red-scribble.png" x={1142} y={892} w={140} h={103} />
       {/* frame with the looping event video in its window */}
       <div className="hero-frame anim-sway absolute" style={box(123, 168, 1128, 635)}>
-        <HeroVideo>
+        <HeroVideo src={video.desktop.src} poster={video.desktop.poster} blurFill={video.custom}>
           <Image src="/images/hero-frame.png" alt="" fill preload sizes={sizes(1128)} className="pointer-events-none select-none object-cover" draggable={false} />
         </HeroVideo>
       </div>
 
       {/* tagline under the video frame */}
       <p className="hero-tagline absolute text-center" style={box(123, 818, 1128, 60)}>
-        Dubai&apos;s first alternative hip-hop, emo rap &amp; cloud rap night.
+        {tagline.replace(/\.$/, "")}.
       </p>
     </StageSection>
   );
 }
 
 /** Phone hero: fills the screen. Logo + nav up top, the vertical video in a hanging frame, HIGH SØ down the side. */
-function HeroMobile() {
+function HeroMobile({ tagline, video }: HeroProps) {
   const geo = frames.left;
   return (
     <section aria-label="Mosh Rooms" className="hero hero-mobile relative flex h-svh min-h-[580px] flex-col overflow-hidden bg-[#101215] md:hidden">
@@ -92,7 +95,7 @@ function HeroMobile() {
       <div className="relative min-h-0 flex-1">
         {/* hanging frame with the vertical event video */}
         <div className="hero-m-frame anim-swing absolute left-[2%]" style={{ transformOrigin: `${geo.pivot[0]}% 0` }}>
-          <FramedHeroVideo geo={geo}>
+          <FramedHeroVideo geo={geo} src={video.mobile.src} poster={video.mobile.poster}>
             <Image src="/images/frame-left-solo.png" alt="" fill sizes="80vw" className="pointer-events-none select-none object-cover" draggable={false} />
           </FramedHeroVideo>
         </div>
@@ -108,7 +111,7 @@ function HeroMobile() {
         </div>
       </div>
 
-      <p className="relative px-6 pb-5 pt-2 text-center text-[13px] leading-snug text-bone/85">Dubai&apos;s first alternative hip-hop, emo rap &amp; cloud rap night</p>
+      <p className="relative px-6 pb-5 pt-2 text-center text-[13px] leading-snug text-bone/85">{tagline}</p>
     </section>
   );
 }

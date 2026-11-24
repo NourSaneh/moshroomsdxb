@@ -1,11 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import { site } from "@/content/site";
 import "./globals.css";
 
-// Self-hosted (SIL OFL / Apache 2.0) — no runtime dependency on Google Fonts.
-const jolly = localFont({ src: "../fonts/jolly-lodger-latin-400-normal.woff2", variable: "--font-jolly", display: "swap", weight: "400" });
-const elite = localFont({ src: "../fonts/special-elite-latin-400-normal.woff2", variable: "--font-elite", display: "swap", weight: "400" });
+import { elite, jolly } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -39,7 +36,7 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${jolly.variable} ${elite.variable} antialiased`}>
       <body>{children}</body>

@@ -94,12 +94,47 @@ function Controls({ muted, playing, toggleSound, togglePlay, className = "", sty
 const WIN = { left: 7.536 - 0.6, top: 22.848 - 0.8, width: 86.124 + 1.2, height: 61.318 + 1.6 };
 
 /** Desktop: wide video inside the hero frame. `children` (the frame art) renders between video and controls. */
-export function HeroVideo({ children }: { children?: ReactNode }) {
+export function HeroVideo({ src, poster, blurFill, children }: { src: string; poster?: string; blurFill?: boolean; children?: ReactNode }) {
   const { video, ...ctl } = useLoopVideo();
+  const bg = useRef<HTMLVideoElement>(null);
+
+  // the blurred side-fill copy follows the main video's play/pause
+  useEffect(() => {
+    const v = video.current;
+    const b = bg.current;
+    if (!blurFill || !v || !b) return;
+    const play = () => {
+      b.currentTime = v.currentTime;
+      b.play().catch(() => {});
+    };
+    const pause = () => b.pause();
+    v.addEventListener("play", play);
+    v.addEventListener("pause", pause);
+    return () => {
+      v.removeEventListener("play", play);
+      v.removeEventListener("pause", pause);
+    };
+  }, [blurFill, video]);
+
   return (
     <>
       <div className="hero-video absolute overflow-hidden" style={{ left: `${WIN.left}%`, top: `${WIN.top}%`, width: `${WIN.width}%`, height: `${WIN.height}%` }}>
-        <video ref={video} className="h-full w-full object-cover" src="/video/hero.mp4" poster="/video/hero-poster.jpg" muted loop playsInline preload="none" aria-label="Mosh Rooms event recap video" disablePictureInPicture />
+        {blurFill && (
+          // any uploaded phone video: blurred, zoomed copy fills the wide frame; the real video sits centred on top
+          <video ref={bg} className="hero-video-fill" src={src} muted loop playsInline preload="none" aria-hidden tabIndex={-1} disablePictureInPicture />
+        )}
+        <video
+          ref={video}
+          className={blurFill ? "relative h-full w-full object-contain" : "h-full w-full object-cover"}
+          src={src}
+          poster={poster}
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-label="Mosh Rooms event recap video"
+          disablePictureInPicture
+        />
       </div>
       {children}
       <Controls {...ctl} style={{ right: `${100 - WIN.left - WIN.width + 3}%`, bottom: `${100 - WIN.top - WIN.height + 5}%` }} />
@@ -108,7 +143,7 @@ export function HeroVideo({ children }: { children?: ReactNode }) {
 }
 
 /** Phone: the original vertical video inside a hanging photo frame, clipped to the frame's window. */
-export function FramedHeroVideo({ geo, children }: { geo: FrameGeo; children?: ReactNode }) {
+export function FramedHeroVideo({ geo, src, poster, children }: { geo: FrameGeo; src: string; poster?: string; children?: ReactNode }) {
   const { video, ...ctl } = useLoopVideo();
   const [bx, by, bw, bh] = geo.box;
   const [cx, cy, rw, rh] = geo.rect;
@@ -117,7 +152,7 @@ export function FramedHeroVideo({ geo, children }: { geo: FrameGeo; children?: R
     <>
       <div className="hero-video absolute" style={{ left: `${bx}%`, top: `${by}%`, width: `${bw}%`, height: `${bh}%`, maskImage: mask, WebkitMaskImage: mask, maskSize: "100% 100%", WebkitMaskSize: "100% 100%" }}>
         <div className="absolute" style={{ left: `${cx - rw / 2}%`, top: `${cy - rh / 2}%`, width: `${rw}%`, height: `${rh}%`, rotate: `${geo.angle}deg` }}>
-          <video ref={video} className="h-full w-full object-cover" src="/video/hero-vertical.mp4" poster="/video/hero-vertical-poster.jpg" muted loop playsInline preload="none" aria-label="Mosh Rooms event recap video" disablePictureInPicture />
+          <video ref={video} className="h-full w-full object-cover" src={src} poster={poster} muted loop playsInline preload="none" aria-label="Mosh Rooms event recap video" disablePictureInPicture />
         </div>
       </div>
       {children}

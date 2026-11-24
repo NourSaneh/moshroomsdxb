@@ -608,3 +608,14 @@ body {
     font-size: 1.625rem;
   }
 }
+
+/* uploaded (raw) hero video: blurred copy fills the wide frame behind the real video */
+.hero-video-fill {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  object-fit: cover;
+  filter: blur(22px) brightness(0.75) saturate(1.5);
+  pointer-events: none;
+}

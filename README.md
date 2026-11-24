@@ -1,7 +1,7 @@
 # Mosh Rooms
 
 Website for **Mosh Rooms** — Dubai's first alternative hip-hop, emo rap & cloud rap night.
-Built from the Figma wireframes with **Next.js 16 (App Router) + Tailwind CSS 4 + TypeScript**. Fully static, no backend.
+Built from the Figma wireframes with **Next.js 16 (App Router) + Tailwind CSS 4 + TypeScript**, with a **Payload CMS** dashboard at `/admin` (Neon Postgres + Vercel Blob).
 
 ## Run it
 
@@ -13,9 +13,48 @@ npm start        # serve the build
 npm run lint
 ```
 
+## Dashboard (Payload CMS) — `/admin`
+
+The venue edits the site at **`/admin`** — no code, no redeploy. Built with [Payload](https://payloadcms.com) 3, living inside this Next.js app.
+
+| Section | What it controls |
+| --- | --- |
+| **Photos & videos** | Upload library (stored in Vercel Blob). Each photo needs a short description. |
+| **Album** | Which photo hangs in each of the 3 frames, and the photos in the chainsaw-chain strip (drag to reorder). |
+| **Hero video** | The looping video in the top frame. Upload a vertical phone video (MP4, < 50 MB) — on computers the sides are filled with a blurred copy automatically. |
+| **Text & links** | Tagline, venue, "next date" text, Instagram link + handle. |
+| **Team** | Who can log in. |
+
+- Saving anything rebuilds the home page within seconds (`revalidatePath` hooks in `src/payload/hooks/revalidate.ts`).
+- Anything left empty falls back to the built-in defaults in `src/content/site.ts`, and if the database is unreachable the site still renders with those defaults.
+- First visit to `/admin` on a fresh database asks you to **create the first account** — do this right after the first deploy. Then click **“Import current website content”** on the dashboard home once, to copy the current photos, video and text in.
+- Uploads go **directly from the browser to Blob** (`clientUploads`), so big files skip Vercel's request-size limit; files are served straight from Blob's CDN.
+
+### Services / environment variables (Vercel)
+
+| Variable | Set by |
+| --- | --- |
+| `DATABASE_URL` (or `POSTGRES_URL`) | Neon integration (Vercel → Storage) |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob store connected to the project |
+| `PAYLOAD_SECRET` | You — a long random string (signs logins) |
+| `NEXT_PUBLIC_SITE_URL` | Optional — final domain, for SEO/sitemap |
+
+Database tables are created/updated automatically on deploy (`prodMigrations`, migrations in `src/migrations/`). After changing collections/globals, create a new migration locally (`npm run migrate:create`) and commit it.
+
+### Local development
+
+```bash
+npm run db:local            # local Postgres on :54329 (first run downloads it)
+# .env.local:
+#   DATABASE_URL=postgres://mosh:mosh@localhost:54329/moshrooms
+#   PAYLOAD_SECRET=any-long-random-string
+npm run dev                 # site: http://localhost:3000, dashboard: /admin
+```
+Without `BLOB_READ_WRITE_TOKEN`, uploads are saved to `./media` locally.
+
 ## Edit content (no coding needed)
 
-Everything editable is in **`src/content/site.ts`**:
+Day to day, use the dashboard above. **`src/content/site.ts`** holds the *defaults* (used for anything not set in the dashboard):
 
 | What | Where |
 | --- | --- |

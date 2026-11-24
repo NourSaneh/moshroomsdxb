@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local uploads (when no Blob token) and local test database
+/media
+/.localdb
+.pgstart.mjs

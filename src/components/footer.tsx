@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/content/site";
+import type { SiteText } from "@/lib/content";
 
-const links = [
-  { href: "#album", label: "Album" },
-  { href: "#events", label: "Events" },
-  { href: site.instagram, label: "Instagram", external: true },
-];
 
 /** Footer in the same horror-punk collage language: hanging sign, chains, torn tape, stars, ghost. */
-export function Footer() {
+export function Footer({ text }: { text: SiteText }) {
+  const links = [
+    { href: "#album", label: "Album" },
+    { href: "#events", label: "Events" },
+    { href: text.instagram, label: "Instagram", external: true },
+  ];
   return (
     <footer className="site-footer relative overflow-hidden bg-black">
       <Image src="/images/gallery-bg.jpg" alt="" fill sizes="100vw" className="object-cover opacity-45" />
@@ -33,7 +33,7 @@ export function Footer() {
           </div>
           <div className="torn-tape relative -mt-3 w-64 rotate-[-2deg] md:w-80">
             <Image src="/images/torn-strip.png" alt="" fill sizes="320px" className="object-fill opacity-25 mix-blend-multiply" />
-            <p className="relative px-7 py-3 text-center text-[13px] leading-snug text-[#1a1212] md:text-sm">{site.tagline}</p>
+            <p className="relative px-7 py-3 text-center text-[13px] leading-snug text-[#1a1212] md:text-sm">{text.tagline}</p>
           </div>
         </div>
 
@@ -60,14 +60,14 @@ export function Footer() {
         <div className="text-center md:col-start-3 md:row-start-1 md:pt-16 md:text-right">
           <h2 className="label-red">Find us</h2>
           <p className="mt-3 text-lg text-bone">
-            {site.venue.name}
+            {text.venueName}
             <br />
-            {site.venue.area}
+            {text.venueArea}
           </p>
-          <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="cta mt-5 text-[1.6rem]">
+          <a href={text.instagram} target="_blank" rel="noopener noreferrer" className="cta mt-5 text-[1.6rem]">
             Follow the pit <span aria-hidden>→</span>
           </a>
-          <p className="mt-3 text-sm text-bone/70">{site.instagramHandle}</p>
+          <p className="mt-3 text-sm text-bone/70">{text.instagramHandle}</p>
         </div>
       </div>
 

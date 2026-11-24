@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { album, photos } from "@/content/site";
+import type { Photo } from "@/content/site";
+import type { SiteContent } from "@/lib/content";
 import { frames } from "@/lib/frames";
 import { box, inner, sizes } from "@/lib/stage";
 import { ChainCarousel } from "./chain-carousel";
@@ -7,21 +8,22 @@ import { FramedPhoto } from "./framed-photo";
 import { GalleryProvider } from "./gallery";
 import { Layer, RotLayer, StageSection } from "./stage";
 
-const stripItems = album.strip.map((index) => ({ index, photo: photos[index] }));
+type AlbumProps = { photos: Photo[]; album: SiteContent["album"] };
 
 /** Wireframe 2 — the album wall. Desktop/tablet: the Figma collage. Phones: a stacked version. */
-export function Album() {
+export function Album({ photos, album }: AlbumProps) {
   return (
     <GalleryProvider photos={photos}>
       <div id="album" className="scroll-mt-0">
-        <AlbumStage />
-        <AlbumMobile />
+        <AlbumStage photos={photos} album={album} />
+        <AlbumMobile photos={photos} album={album} />
       </div>
     </GalleryProvider>
   );
 }
 
-function AlbumStage() {
+function AlbumStage({ photos, album }: AlbumProps) {
+  const stripItems = album.strip.map((index) => ({ index, photo: photos[index] }));
   const left = frames.left;
   const middle = frames.middle;
   const saw = frames.chainsaw;
@@ -67,7 +69,8 @@ function AlbumStage() {
   );
 }
 
-function AlbumMobile() {
+function AlbumMobile({ photos, album }: AlbumProps) {
+  const stripItems = album.strip.map((index) => ({ index, photo: photos[index] }));
   const cards = [
     { geo: frames.left, idx: album.leftFrame, tilt: "-2deg" },
     { geo: frames.middle, idx: album.middleFrame, tilt: "2deg" },
