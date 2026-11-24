@@ -14,13 +14,6 @@ export function Events() {
             Events
           </h2>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-bone/85">{site.tagline}.</p>
-          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Genres">
-            {site.genres.map((g) => (
-              <li key={g} className="tag">
-                {g}
-              </li>
-            ))}
-          </ul>
           <dl className="mt-8 grid gap-1 text-bone/85">
             <dt className="font-display text-2xl text-blood">Where</dt>
             <dd>
