@@ -15,7 +15,6 @@ export function Footer() {
       <div className="top-chain" aria-hidden />
 
       {/* scattered stickers */}
-      <Deco src="/images/red-grunge-star.png" className="left-[6%] top-[9%] w-12 -rotate-12 md:left-[33%] md:top-[46%] md:w-14" ratio="249/243" />
       <Deco src="/images/black-grunge-star.png" className="right-[6%] top-[12%] w-10 rotate-12 md:right-[33%] md:top-[30%] md:w-12" ratio="253/243" />
       <Deco src="/images/red-scribble.png" className="bottom-[16%] right-[7%] hidden w-14 md:block" ratio="103/192" />
 
