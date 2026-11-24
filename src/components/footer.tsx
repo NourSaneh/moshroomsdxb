@@ -39,7 +39,7 @@ export function Footer() {
 
         {/* links */}
         <nav aria-label="Footer" className="text-center md:col-start-1 md:row-start-1 md:pt-16 md:text-left">
-          <h2 className="font-display text-2xl text-blood">Enter the room</h2>
+          <h2 className="label-red">Enter the room</h2>
           <ul className="mt-3 space-y-1">
             {links.map((l) => (
               <li key={l.label}>
@@ -58,7 +58,7 @@ export function Footer() {
 
         {/* venue + next date */}
         <div className="text-center md:col-start-3 md:row-start-1 md:pt-16 md:text-right">
-          <h2 className="font-display text-2xl text-blood">Find us</h2>
+          <h2 className="label-red">Find us</h2>
           <p className="mt-3 text-lg text-bone">
             {site.venue.name}
             <br />

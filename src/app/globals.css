@@ -593,3 +593,18 @@ body {
   text-shadow: 0 2px 10px #000, 0 0 2px #000;
   letter-spacing: 0.01em;
 }
+
+/* red section labels (Where, Next date, Find us…) — brighter red + glow for contrast on black */
+.label-red {
+  font-family: var(--font-display);
+  font-size: 1.75rem; /* 28px */
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: #ff5442;
+  text-shadow: 0 0 12px rgb(255 42 26 / 0.55), 0 1px 1px #000;
+}
+@media (min-width: 768px) {
+  .label-red {
+    font-size: 1.625rem;
+  }
+}

@@ -15,11 +15,11 @@ export function Events() {
           </h2>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-bone/85">{site.tagline}.</p>
           <dl className="mt-8 grid gap-1 text-bone/85">
-            <dt className="font-display text-2xl text-blood">Where</dt>
+            <dt className="label-red">Where</dt>
             <dd>
               {site.venue.name}, {site.venue.area}
             </dd>
-            <dt className="font-display mt-3 text-2xl text-blood">Next date</dt>
+            <dt className="label-red mt-4">Next date</dt>
             <dd>Dates, line-ups and tickets drop on Instagram first.</dd>
           </dl>
           <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="cta mt-10">
