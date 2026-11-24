@@ -534,7 +534,7 @@ body {
 
 /* ───────── phone hero ───────── */
 .hero-mobile .hero-bg {
-  opacity: 0.45;
+  opacity: 0.34; /* darker than before so the frame is the focal point */
 }
 /* phones can't hover — she winks on her own every few seconds */
 .hero-mobile .auto-wink {
@@ -546,30 +546,184 @@ body {
     opacity: 0;
   }
   87%, 95% {
-    opacity: 0.45;
+    opacity: 0.34;
   }
+}
+/* vignette: darkest at the top (header) and bottom, softest behind the frame */
+.hero-m-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 45% at 45% 55%, transparent 0%, rgb(5 5 6 / 0.35) 70%, rgb(5 5 6 / 0.6) 100%),
+    linear-gradient(to bottom, rgb(5 5 6 / 0.85) 0%, rgb(5 5 6 / 0.25) 30%, rgb(5 5 6 / 0.25) 70%, rgb(5 5 6 / 0.9) 100%);
 }
 .nav-link-m {
   font-family: var(--font-display);
-  font-size: clamp(26px, 8vw, 36px);
-  line-height: 1.2;
+  font-size: clamp(22px, 6.6vw, 30px);
+  line-height: 1;
+  letter-spacing: 0.02em;
   color: #fff;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  /* sits level with the logo's MOSH line */
+  margin-top: calc(38vw * 2 / 3 * 0.06);
+  transition: color 0.2s, transform 0.2s;
 }
 .nav-link-m:active,
 .nav-link-m:focus-visible {
   color: var(--color-blood);
+  transform: rotate(-3deg) scale(1.05);
   outline: none;
 }
 .hero-m-frame {
-  /* portrait hanging frame, as big as the space allows (width or height), centred vertically */
+  /* portrait hanging frame: a bit smaller, centred, less tilt */
+  left: 50%;
   top: 0;
   bottom: 0;
   margin-block: auto;
-  height: min(100%, calc(78vw * 503 / 360));
+  translate: -60% 0;
+  height: min(96%, calc(72vw * 503 / 360));
   aspect-ratio: 360 / 503;
+  --tilt: -4deg; /* the artwork leans 11°; this brings it to ~7° */
+}
+/* cast shadow on the wall, behind the frame body (moves with the frame) */
+.hero-m-shadow {
+  position: absolute;
+  left: 6%;
+  top: 22%;
+  width: 88%;
+  height: 64%;
+  rotate: 11deg;
+  translate: 4% 5%;
+  border-radius: 6px;
+  background: rgb(0 0 0 / 0.55);
+  filter: blur(18px);
+  pointer-events: none;
+}
+.hero-m-highso {
+  right: 5%;
+  top: 18%;
+  height: 50%;
+  opacity: 0.9;
+}
+/* slow, organic pendulum sway */
+.anim-hang {
+  animation: hang 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes hang {
+  0%, 100% {
+    transform: rotate(-1.1deg);
+  }
+  50% {
+    transform: rotate(1.1deg);
+  }
+}
+/* scroll cue at the bottom of the phone hero */
+.hero-m-scroll {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0 16px;
+  min-height: 44px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: rgb(243 235 216 / 0.6);
+}
+.hero-m-scroll-line {
+  width: 1px;
+  height: 22px;
+  background: linear-gradient(var(--color-rule), transparent);
+  animation: scrollcue 2.2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes scrollcue {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  40% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* phone video controls: smaller, consistent borders, tap feedback, tucked under the frame */
+@media (max-width: 767px) {
+  .hero-mobile .video-btn {
+    height: 34px;
+    min-width: 34px;
+    padding: 0 8px;
+    border-width: 1.5px;
+    box-shadow: 0 0 0 1.5px #000, 0 6px 14px rgb(0 0 0 / 0.6);
+    rotate: 0deg;
+    background: rgb(8 8 9 / 0.82);
+  }
+  .hero-mobile .video-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+  .hero-mobile .hero-video-controls {
+    gap: 8px;
+  }
+}
+.video-btn:active {
+  transform: scale(0.92);
+}
+
+/* ───────── intro (editorial bridge) ───────── */
+.intro {
+  background: linear-gradient(#050506, #0a0a0b 40%, #0a0a0b);
+}
+.intro-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  background: url("/images/gallery-bg.jpg") center / cover;
+  mask-image: linear-gradient(transparent, #000 30%, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 30%, #000 70%, transparent);
+  pointer-events: none;
+}
+.intro-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-rule);
+}
+.intro-kicker-rule {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+.intro-headline {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 15vw, 104px);
+  line-height: 0.95;
+  color: var(--color-bone);
+  text-wrap: balance;
+  /* faint red misprint offset — distressed, not glitchy */
+  text-shadow: 3px 2px 0 rgb(200 16 10 / 0.55), 0 0 30px rgb(0 0 0 / 0.8);
+}
+.intro-outro {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 9vw, 48px);
+  line-height: 1;
+  color: #ff5442;
+  text-shadow: 0 0 14px rgb(255 42 26 / 0.5), 0 1px 1px #000;
+  rotate: -2deg;
 }
 
 /* clickable logo */
@@ -618,4 +772,10 @@ body {
   object-fit: cover;
   filter: blur(22px) brightness(0.75) saturate(1.5);
   pointer-events: none;
+}
+
+/* ───────── scroll swing (see components/scroll-swing.tsx) ─────────
+   --swing is set per element by the pendulum physics; --tilt is any resting lean. Both stack on the idle sway. */
+[data-swing] {
+  rotate: calc(var(--tilt, 0deg) + var(--swing, 0deg));
 }

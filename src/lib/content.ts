@@ -4,6 +4,9 @@ import { album as defaultAlbum, photos as defaultPhotos, site, type Photo } from
 
 export type SiteText = {
   tagline: string;
+  introKicker: string;
+  introHeadline: string;
+  introOutro: string;
   venueName: string;
   venueArea: string;
   nextDate: string;
@@ -29,6 +32,9 @@ export type SiteContent = {
 
 const DEFAULT_TEXT: SiteText = {
   tagline: site.tagline,
+  introKicker: "Dubai · Underground culture",
+  introHeadline: "Not made for everyone.",
+  introOutro: "Find your people.",
   venueName: site.venue.name,
   venueArea: site.venue.area,
   nextDate: "Dates, line-ups and tickets drop on Instagram first.",
@@ -108,6 +114,9 @@ export async function getContent(): Promise<SiteContent> {
   return {
     text: {
       tagline: pick(textDoc.tagline, DEFAULT_TEXT.tagline),
+      introKicker: pick(textDoc.introKicker, DEFAULT_TEXT.introKicker),
+      introHeadline: pick(textDoc.introHeadline, DEFAULT_TEXT.introHeadline),
+      introOutro: pick(textDoc.introOutro, DEFAULT_TEXT.introOutro),
       venueName: pick(textDoc.venueName, DEFAULT_TEXT.venueName),
       venueArea: pick(textDoc.venueArea, DEFAULT_TEXT.venueArea),
       nextDate: pick(textDoc.nextDate, DEFAULT_TEXT.nextDate),

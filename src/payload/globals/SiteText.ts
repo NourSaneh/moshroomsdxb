@@ -9,6 +9,15 @@ export const SiteText: GlobalConfig = {
   fields: [
     { name: "tagline", type: "text", admin: { description: "Shown under the hero video and in the Events section." } },
     {
+      type: "collapsible",
+      label: "Intro section (under the hero)",
+      fields: [
+        { name: "introKicker", label: "Small line on top", type: "text", admin: { placeholder: "Dubai · Underground culture" } },
+        { name: "introHeadline", label: "Headline", type: "text", admin: { placeholder: "Not made for everyone." } },
+        { name: "introOutro", label: "Closing line", type: "text", admin: { placeholder: "Find your people." } },
+      ],
+    },
+    {
       type: "row",
       fields: [
         { name: "venueName", label: "Venue", type: "text", admin: { width: "50%", placeholder: "High SØ" } },

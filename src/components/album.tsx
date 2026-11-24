@@ -42,19 +42,19 @@ function AlbumStage({ photos, album }: AlbumProps) {
       <h2 className="sr-only">Album</h2>
 
       {/* middle hanging frame */}
-      <div className="pointer-events-none absolute anim-swing anim-swing-slow" style={{ ...box(473, 38, 340, 485), transformOrigin: `${middle.pivot[0]}% ${middle.pivot[1]}%` }}>
+      <div className="pointer-events-none absolute anim-swing anim-swing-slow" style={{ ...box(473, 38, 340, 485), transformOrigin: `${middle.pivot[0]}% ${middle.pivot[1]}%` }} data-swing="1" data-swing-period="1.7" data-swing-dir="-1">
         <FramedPhoto geo={middle} photo={photos[album.middleFrame]} index={album.middleFrame} photoSizes={sizes(270)} frameSizes={sizes(340)} />
       </div>
 
       {/* chainsaw with the hanging right frame */}
-      <div className="pointer-events-none absolute flex items-center justify-center" style={box(531, 38, 948.949, 651.012)}>
+      <div className="pointer-events-none absolute flex items-center justify-center" style={{ ...box(531, 38, 948.949, 651.012), transformOrigin: "91% 0" }} data-swing="0.5" data-swing-period="2.1">
         <div className="relative flex-none" style={inner(948.949, 651.012, 927.485, 618.323, -2.04)}>
           <FramedPhoto geo={saw} photo={photos[album.chainsawFrame]} index={album.chainsawFrame} photoSizes={sizes(250)} frameSizes={sizes(928)} />
         </div>
       </div>
 
       {/* left hanging frame */}
-      <div className="pointer-events-none absolute anim-swing" style={{ ...box(91, 29, 360, 503), transformOrigin: `${left.pivot[0]}% ${left.pivot[1]}%` }}>
+      <div className="pointer-events-none absolute anim-swing" style={{ ...box(91, 29, 360, 503), transformOrigin: `${left.pivot[0]}% ${left.pivot[1]}%` }} data-swing="1" data-swing-period="1.4">
         <FramedPhoto geo={left} photo={photos[album.leftFrame]} index={album.leftFrame} photoSizes={sizes(280)} frameSizes={sizes(360)} />
       </div>
 
@@ -83,13 +83,20 @@ function AlbumMobile({ photos, album }: AlbumProps) {
 
       <div className="relative mx-auto grid max-w-sm grid-cols-2 gap-x-2">
         {cards.map((c, i) => (
-          <div key={i} className="relative anim-swing" style={{ aspectRatio: `${c.geo.width}/${c.geo.height}`, transformOrigin: "50% 0", rotate: c.tilt, animationDelay: `${-i * 2}s` }}>
+          <div
+            key={i}
+            className="relative anim-swing"
+            style={{ aspectRatio: `${c.geo.width}/${c.geo.height}`, transformOrigin: "50% 0", ["--tilt" as string]: c.tilt, animationDelay: `${-i * 2}s` }}
+            data-swing="1"
+            data-swing-period={i ? "1.7" : "1.4"}
+            data-swing-dir={i ? "-1" : "1"}
+          >
             <FramedPhoto geo={c.geo} photo={photos[c.idx]} index={c.idx} photoSizes="40vw" frameSizes="50vw" />
           </div>
         ))}
       </div>
 
-      <div className="relative -mt-4" style={{ aspectRatio: "1536/1024" }}>
+      <div className="relative -mt-4" style={{ aspectRatio: "1536/1024", transformOrigin: "91% 0" }} data-swing="0.5" data-swing-period="2.1">
         <FramedPhoto geo={frames.chainsaw} photo={photos[album.chainsawFrame]} index={album.chainsawFrame} photoSizes="30vw" frameSizes="100vw" />
         <div className="anim-float absolute bottom-[4%] left-[2%] w-[34%]" style={{ aspectRatio: "271/307" }}>
           <Image src="/images/ghost-large.png" alt="" fill sizes="34vw" className="object-contain" />

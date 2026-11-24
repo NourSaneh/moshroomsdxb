@@ -22,7 +22,7 @@ export function Footer({ text }: { text: SiteText }) {
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-10 pt-24 md:grid-cols-[1fr_1.2fr_1fr] md:items-start md:px-12 md:pt-20">
         {/* hanging sign */}
         <div className="-mt-14 flex flex-col items-center md:col-start-2 md:row-start-1 md:-mt-12">
-          <div className="anim-swing flex flex-col items-center" style={{ transformOrigin: "50% 0" }}>
+          <div className="anim-swing flex flex-col items-center" style={{ transformOrigin: "50% 0" }} data-swing="0.8" data-swing-period="1.8" data-swing-dir="-1">
             <div className="flex w-56 justify-between px-6 md:w-72">
               <ChainDrop />
               <ChainDrop />

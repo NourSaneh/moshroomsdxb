@@ -55,7 +55,7 @@ function HeroDesktop({ tagline, video }: HeroProps) {
       <RotLayer src="/images/figure-white.png" x={1216} y={51} w={216.677} h={208.212} iw={152} ih={169} deg={65.62} className="anim-bob" />
       <Layer src="/images/black-red-scribble.png" x={1142} y={892} w={140} h={103} />
       {/* frame with the looping event video in its window */}
-      <div className="hero-frame anim-sway absolute" style={box(123, 168, 1128, 635)}>
+      <div className="hero-frame anim-sway absolute" style={box(123, 168, 1128, 635)} data-swing="0.3" data-swing-period="2.4">
         <HeroVideo src={video.desktop.src} poster={video.desktop.poster} blurFill={video.custom}>
           <Image src="/images/hero-frame.png" alt="" fill preload sizes={sizes(1128)} className="pointer-events-none select-none object-cover" draggable={false} />
         </HeroVideo>
@@ -69,49 +69,57 @@ function HeroDesktop({ tagline, video }: HeroProps) {
   );
 }
 
-/** Phone hero: fills the screen. Logo + nav up top, the vertical video in a hanging frame, HIGH SØ down the side. */
-function HeroMobile({ tagline, video }: HeroProps) {
+/**
+ * Phone hero — its own composition, not the desktop one scaled down.
+ * One focal point: the hanging video frame. Darker, vignetted background; quieter header; HIGH SØ pulled in.
+ */
+function HeroMobile({ video }: HeroProps) {
   const geo = frames.left;
   return (
-    <section aria-label="Mosh Rooms" className="hero hero-mobile relative flex h-svh min-h-[580px] flex-col overflow-hidden bg-[#101215] md:hidden">
+    <section aria-label="Mosh Rooms" className="hero hero-mobile relative flex h-svh min-h-[600px] flex-col overflow-hidden bg-[#08080a] md:hidden">
       <Image src="/images/hero-bg.jpg" alt="" fill preload sizes="100vw" className="hero-bg object-cover object-[62%_50%]" />
       <Image src="/images/hero-bg-wink.jpg" alt="" fill sizes="100vw" className="hero-bg hero-bg-wink auto-wink object-cover object-[62%_50%]" />
+      <div className="hero-m-vignette" aria-hidden />
 
-      <div className="relative mx-4 mt-3 h-px bg-rule" />
-      <nav aria-label="Main" className="relative flex items-start justify-between px-5 pt-2">
-        <a href="#events" className="nav-link-m">
-          EVENTS
-        </a>
-        <a href="#album" className="nav-link-m">
-          ALBUM
-        </a>
-      </nav>
-      <h1 className="relative mx-auto -mt-9 aspect-[3/2] w-[46vw] max-w-[240px]">
-        <Link href="/" className="logo-link relative block h-full w-full" aria-label="Mosh Rooms — home">
-          <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill preload sizes="46vw" className="object-contain" />
-        </Link>
-      </h1>
+      {/* header: rule, then EVENTS · logo · ALBUM on one line */}
+      <div className="relative mx-5 mt-5 h-px bg-rule/80" />
+      <header className="relative grid grid-cols-[1fr_auto_1fr] items-start px-5 pt-4">
+        <nav aria-label="Main" className="contents">
+          <a href="#events" className="nav-link-m justify-self-start">
+            EVENTS
+          </a>
+          <h1 className="relative col-start-2 aspect-[3/2] w-[38vw] max-w-[200px]">
+            <Link href="/" className="logo-link relative block h-full w-full" aria-label="Mosh Rooms — home">
+              <Image src="/images/mosh-rooms-logo.png" alt="Mosh Rooms" fill preload sizes="38vw" className="object-contain" />
+            </Link>
+          </h1>
+          <a href="#album" className="nav-link-m justify-self-end">
+            ALBUM
+          </a>
+        </nav>
+      </header>
 
       <div className="relative min-h-0 flex-1">
-        {/* hanging frame with the vertical event video */}
-        <div className="hero-m-frame anim-swing absolute left-[2%]" style={{ transformOrigin: `${geo.pivot[0]}% 0` }}>
+        {/* the hanging frame: cast shadow + video + frame art + controls swing together */}
+        <div className="hero-m-frame anim-hang absolute" style={{ transformOrigin: `${geo.pivot[0]}% 0` }} data-swing="1" data-swing-period="1.7">
+          <div className="hero-m-shadow" aria-hidden />
           <FramedHeroVideo geo={geo} src={video.mobile.src} poster={video.mobile.poster}>
-            <Image src="/images/frame-left-solo.png" alt="" fill sizes="80vw" className="pointer-events-none select-none object-cover" draggable={false} />
+            <Image src="/images/frame-left-solo.png" alt="" fill sizes="70vw" className="pointer-events-none select-none object-cover" draggable={false} />
           </FramedHeroVideo>
         </div>
 
-        <div className="absolute right-[1%] top-[13%] h-[70%]" style={{ aspectRatio: "252/772" }}>
-          <Image src="/images/high-so.png" alt="High SØ" fill sizes="25vw" className="object-contain" />
+        <div className="hero-m-highso pointer-events-none absolute" style={{ aspectRatio: "252/772" }}>
+          <Image src="/images/high-so.png" alt="High SØ" fill sizes="20vw" className="object-contain" />
         </div>
-        <div className="anim-bob absolute right-[3%] top-[1%] w-[15vw]" style={{ aspectRatio: "152/169", rotate: "65deg" }}>
-          <Image src="/images/figure-white.png" alt="" fill sizes="17vw" className="object-contain" />
-        </div>
-        <div className="absolute bottom-[1%] right-[5%] w-[26vw]" style={{ aspectRatio: "140/103" }}>
-          <Image src="/images/black-red-scribble.png" alt="" fill sizes="26vw" className="object-contain" />
+        <div className="anim-bob pointer-events-none absolute right-[7%] top-[2%] w-[11vw] opacity-90" style={{ aspectRatio: "152/169", rotate: "65deg" }}>
+          <Image src="/images/figure-white.png" alt="" fill sizes="12vw" className="object-contain" />
         </div>
       </div>
 
-      <p className="relative px-6 pb-5 pt-2 text-center text-[13px] leading-snug text-bone/85">{tagline}</p>
+      <a href="#intro" className="hero-m-scroll" aria-label="Scroll down">
+        <span>scroll</span>
+        <span className="hero-m-scroll-line" aria-hidden />
+      </a>
     </section>
   );
 }

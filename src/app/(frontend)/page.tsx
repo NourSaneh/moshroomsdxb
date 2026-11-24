@@ -2,6 +2,8 @@ import { Album } from "@/components/album";
 import { Events } from "@/components/events";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
+import { Intro } from "@/components/intro";
+import { ScrollSwing } from "@/components/scroll-swing";
 import { site } from "@/content/site";
 import { getContent } from "@/lib/content";
 
@@ -28,10 +30,12 @@ export default async function Home() {
     <>
       <main>
         <Hero tagline={text.tagline} video={hero} />
+        <Intro text={text} />
         <Album photos={photos} album={album} />
         <Events text={text} />
       </main>
       <Footer text={text} />
+      <ScrollSwing />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     </>
   );
