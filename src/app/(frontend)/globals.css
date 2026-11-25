@@ -681,14 +681,12 @@ body {
   .hero-mobile .hero-video-controls {
     gap: 10px;
   }
-  /* hand-stuck look: each button leans its own way, slightly off-line */
+  /* a slight hand-placed lean, not perfectly straight */
   .hero-mobile .video-btn:nth-child(1) {
-    rotate: -7deg;
-    translate: 0 -2px;
+    rotate: -3deg;
   }
   .hero-mobile .video-btn:nth-child(2) {
-    rotate: 6deg;
-    translate: 0 4px;
+    rotate: 2deg;
   }
 }
 .video-btn:active {
