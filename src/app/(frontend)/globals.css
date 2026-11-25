@@ -681,12 +681,9 @@ body {
   .hero-mobile .hero-video-controls {
     gap: 10px;
   }
-  /* a slight hand-placed lean, not perfectly straight */
-  .hero-mobile .video-btn:nth-child(1) {
-    rotate: -3deg;
-  }
-  .hero-mobile .video-btn:nth-child(2) {
-    rotate: 2deg;
+  /* cancel the frame's -4° tilt so the buttons sit level and neat */
+  .hero-mobile .hero-video-controls {
+    rotate: 4deg;
   }
 }
 .video-btn:active {
