@@ -603,10 +603,9 @@ body {
   pointer-events: none;
 }
 .hero-m-highso {
-  right: 5%;
-  top: 18%;
-  height: 50%;
-  opacity: 0.9;
+  right: 1%;
+  top: 13%;
+  height: 70%;
 }
 /* slow, organic pendulum sway */
 .anim-hang {

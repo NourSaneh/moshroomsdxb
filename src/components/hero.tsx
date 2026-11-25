@@ -71,7 +71,7 @@ function HeroDesktop({ tagline, video }: HeroProps) {
 
 /**
  * Phone hero — its own composition, not the desktop one scaled down.
- * One focal point: the hanging video frame. Darker, vignetted background; quieter header; HIGH SØ pulled in.
+ * One focal point: the hanging video frame. Darker, vignetted background; quieter header; HIGH SØ down the side.
  */
 function HeroMobile({ video }: HeroProps) {
   const geo = frames.left;
@@ -109,7 +109,7 @@ function HeroMobile({ video }: HeroProps) {
         </div>
 
         <div className="hero-m-highso pointer-events-none absolute" style={{ aspectRatio: "252/772" }}>
-          <Image src="/images/high-so.png" alt="High SØ" fill sizes="20vw" className="object-contain" />
+          <Image src="/images/high-so.png" alt="High SØ" fill sizes="25vw" className="object-contain" />
         </div>
         <div className="anim-bob pointer-events-none absolute right-[7%] top-[2%] w-[11vw] opacity-90" style={{ aspectRatio: "152/169", rotate: "65deg" }}>
           <Image src="/images/figure-white.png" alt="" fill sizes="12vw" className="object-contain" />
