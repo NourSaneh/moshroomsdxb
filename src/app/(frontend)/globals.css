@@ -578,13 +578,13 @@ body {
   outline: none;
 }
 .hero-m-frame {
-  /* portrait hanging frame: a bit smaller, centred, less tilt */
+  /* portrait hanging frame: centred, less tilt */
   left: 50%;
   top: 0;
   bottom: 0;
   margin-block: auto;
   translate: -60% 0;
-  height: min(96%, calc(72vw * 503 / 360));
+  height: min(98%, calc(80vw * 503 / 360));
   aspect-ratio: 360 / 503;
   --tilt: -4deg; /* the artwork leans 11°; this brings it to ~7° */
 }
@@ -679,7 +679,16 @@ body {
     height: 15px;
   }
   .hero-mobile .hero-video-controls {
-    gap: 8px;
+    gap: 10px;
+  }
+  /* hand-stuck look: each button leans its own way, slightly off-line */
+  .hero-mobile .video-btn:nth-child(1) {
+    rotate: -7deg;
+    translate: 0 -2px;
+  }
+  .hero-mobile .video-btn:nth-child(2) {
+    rotate: 6deg;
+    translate: 0 4px;
   }
 }
 .video-btn:active {
