@@ -603,9 +603,17 @@ body {
   pointer-events: none;
 }
 .hero-m-highso {
-  right: 1%;
-  top: 13%;
-  height: 70%;
+  right: 2%;
+  top: 20%;
+  height: 56%;
+}
+/* feet (68.6% down the ghost image, 41% across) land on the top of the H (62% across the letters) */
+.hero-m-ghost {
+  bottom: 100%;
+  left: 29.6%;
+  width: 80%;
+  translate: 0 33%;
+  opacity: 0.92;
 }
 /* slow, organic pendulum sway */
 .anim-hang {
