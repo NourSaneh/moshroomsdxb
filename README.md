@@ -12,31 +12,6 @@ Website for **Mosh Rooms**, Dubai's first alternative hip-hop, emo rap & cloud r
 - **Vercel Blob**: uploaded photos and videos
 - Hosted on **Vercel**
 
-## Run locally
-
-```bash
-npm install
-npm run db:local   # local Postgres (first run downloads it)
-npm run dev        # http://localhost:3000
-```
-
-`.env.local`:
-
-```
-DATABASE_URL=postgres://mosh:mosh@localhost:54329/moshrooms
-PAYLOAD_SECRET=any-long-random-string
-```
-
-Without a Blob token, uploads are saved to `./media`.
-
-## Environment variables (Vercel)
-
-| Variable | What it is |
-| --- | --- |
-| `DATABASE_URL` | Neon Postgres connection |
-| `BLOB_READ_WRITE_TOKEN` | Vercel Blob store (must be **public**) |
-| `PAYLOAD_SECRET` | Long random string, signs logins |
-| `NEXT_PUBLIC_SITE_URL` | Optional, final domain for SEO |
 
 ## Dashboard
 
