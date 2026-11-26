@@ -24,10 +24,6 @@ The venue edits the site at `/admin` with no code and no redeploy.
 | Hero video | The looping video in the top frame |
 | Text & links | Tagline, intro, venue, next date, Instagram |
 
-- First visit creates the admin account. Then click **Import current website content** once.
-- Saving rebuilds the home page in seconds.
-- Anything left empty falls back to the defaults in `src/content/site.ts`.
-
 ## Project structure
 
 ```
