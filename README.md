@@ -66,22 +66,4 @@ src/
 public/              images and video
 ```
 
-## Database changes
 
-Migrations run automatically on deploy. After changing collections or globals:
-
-```bash
-npm run migrate:create
-```
-
-Then commit the new file in `src/migrations/`.
-
-## Scripts
-
-| Command | Does |
-| --- | --- |
-| `npm run dev` | Dev server |
-| `npm run build` | Production build |
-| `npm run lint` | Lint |
-| `npm run db:local` | Local Postgres |
-| `npm run migrate:create` | New migration |
