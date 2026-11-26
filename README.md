@@ -63,7 +63,7 @@ src/
   content/site.ts    default text and photos
   payload/           collections, globals, hooks
   migrations/        database migrations
-public/              images, video, fonts
+public/              images and video
 ```
 
 ## Database changes
